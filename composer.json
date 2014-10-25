@@ -6,6 +6,9 @@
             "email": "emil.kilhage@dri-nordic.com"
         }
     ],
+    "autoload": {
+        "psr-0": { "DRI\\SugarCRM\\Component\\Framework": "src/" }
+    },
     "require": {
 
     }

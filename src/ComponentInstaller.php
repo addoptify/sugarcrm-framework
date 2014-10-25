@@ -1,6 +1,6 @@
 <?php
 
-namespace DRI\SugarCRM;
+namespace DRI\SugarCRM\Framework;
 
 /**
  * @author Emil Kilhage
