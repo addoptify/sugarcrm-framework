@@ -10,6 +10,17 @@
         "psr-0": { "DRI\\SugarCRM\\Component\\Framework": "src/" }
     },
     "require": {
-
-    }
+        "dri-nordic/sugarcrm-database": "dev-master",
+        "dri-nordic/sugarcrm-validation": "dev-master"
+    },
+    "repositories": [
+        {
+            "type": "git",
+            "url":  "git@gitlab.scm.dri.pt:dri-nordic/sugarcrm-database.git"
+        },
+        {
+            "type": "git",
+            "url":  "git@gitlab.scm.dri.pt:dri-nordic/sugarcrm-validation.git"
+        }
+    ]
 }
