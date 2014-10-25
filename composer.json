@@ -15,12 +15,8 @@
     },
     "repositories": [
         {
-            "type": "git",
-            "url":  "git@gitlab.scm.dri.pt:dri-nordic/sugarcrm-database.git"
-        },
-        {
-            "type": "git",
-            "url":  "git@gitlab.scm.dri.pt:dri-nordic/sugarcrm-validation.git"
+            "type": "composer",
+            "url": "http://gitlab.scm.dri.pt/"
         }
     ]
 }
