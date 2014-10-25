@@ -1,0 +1,70 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
+    ],
+    "hash": "38574266ffe4dba2e7e5659dcaba98d7",
+    "packages": [
+        {
+            "name": "dri-nordic/sugarcrm-database",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "git@gitlab.scm.dri.pt:dri-nordic/sugarcrm-database.git",
+                "reference": "1b803828e8d78a8b1b7ba394d48ce2ee220b7245"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "DRI\\SugarCRM\\Component\\Database": "src/"
+                }
+            },
+            "authors": [
+                {
+                    "name": "Emil Kilhage",
+                    "email": "emil.kilhage@dri-nordic.com"
+                }
+            ],
+            "time": "2014-10-25 15:08:39"
+        },
+        {
+            "name": "dri-nordic/sugarcrm-validation",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "git@gitlab.scm.dri.pt:dri-nordic/sugarcrm-validation.git",
+                "reference": "9a7de47700c7ccfeaba1591ca61897f10a80cea7"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "DRI\\SugarCRM\\Component\\Validation": "src/"
+                }
+            },
+            "authors": [
+                {
+                    "name": "Emil Kilhage",
+                    "email": "emil.kilhage@dri-nordic.com"
+                }
+            ],
+            "time": "2014-10-25 15:10:11"
+        }
+    ],
+    "packages-dev": [
+
+    ],
+    "aliases": [
+
+    ],
+    "minimum-stability": "stable",
+    "stability-flags": {
+        "dri-nordic/sugarcrm-database": 20,
+        "dri-nordic/sugarcrm-validation": 20
+    },
+    "platform": [
+
+    ],
+    "platform-dev": [
+
+    ]
+}
