@@ -16,7 +16,7 @@
     "repositories": [
         {
             "type": "composer",
-            "url":  "http://dev.packages.dricrm.com/"
+            "url":  "https://packages.dricrm.com/"
         }
     ]
 }
