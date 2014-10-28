@@ -8,7 +8,7 @@ use \DRI\SugarCRM\Module\Tests\MockBeanFactory;;
 /**
  * @author Emil Kilhage
  */
-class TestCase extends \PHPUnit_Framework_TestCase
+abstract class TestCase extends \PHPUnit_Framework_TestCase
 {
 
     /**
@@ -62,6 +62,15 @@ class TestCase extends \PHPUnit_Framework_TestCase
     public function getBeanFactory($moduleName)
     {
         return BeanFactory::getInstance($moduleName);
+    }
+
+    /**
+     * @param $moduleName
+     * @return \SugarBean
+     */
+    public function newBean($moduleName)
+    {
+        return $this->getBeanFactory($moduleName)->newBean();
     }
 
 }

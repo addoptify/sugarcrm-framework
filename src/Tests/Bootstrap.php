@@ -41,6 +41,21 @@ class Bootstrap
             define('sugarEntry', true);
         }
 
+        global $sugar_config;
+        global $sugar_flavor;
+        global $locale;
+        global $db;
+        global $beanList;
+        global $beanFiles;
+        global $moduleList;
+        global $modInvisList;
+        global $adminOnlyList;
+        global $modules_exempt_from_availability_check;
+
+        global $app_list_strings;
+        global $app_strings;
+        global $mod_strings;
+
         require_once 'include/entryPoint.php';
 
         // Scope is messed up due to requiring files within a function
