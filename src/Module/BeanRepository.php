@@ -24,7 +24,7 @@ class BeanRepository
 
     /**
      * @param string $moduleName
-     * @return BeanFactory
+     * @return BeanRepository
      */
     public static function getInstance($moduleName)
     {
@@ -37,16 +37,16 @@ class BeanRepository
 
     /**
      * @param $moduleName
-     * @param BeanFactory $instance
+     * @param BeanRepository $instance
      */
-    public static function setInstance($moduleName, BeanFactory $instance)
+    public static function setInstance($moduleName, BeanRepository $instance)
     {
         static::$instances[$moduleName] = $instance;
     }
 
     /**
      * @param string $moduleName
-     * @return BeanFactory
+     * @return BeanRepository
      */
     public static function factory($moduleName)
     {
@@ -56,7 +56,7 @@ class BeanRepository
 
     /**
      * @param $moduleName
-     * @return BeanFactory
+     * @return BeanRepository
      */
     public static function getClassName($moduleName)
     {
