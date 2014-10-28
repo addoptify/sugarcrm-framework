@@ -42,6 +42,7 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
         parent::tearDown();
 
         foreach ($beanList as $moduleName => $object_name) {
+            $this->getBeanFactory($moduleName)->removeAllCreated();
             $this->tearDownBeanFactory($moduleName);
         }
     }
@@ -66,11 +67,12 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
 
     /**
      * @param $moduleName
+     * @param array $fields
      * @return \SugarBean
      */
-    public function newBean($moduleName)
+    public function create($moduleName, array $fields = array())
     {
-        return $this->getBeanFactory($moduleName)->newBean();
+        return $this->getBeanFactory($moduleName)->create($fields);
     }
 
 }
