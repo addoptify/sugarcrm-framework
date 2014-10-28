@@ -22,8 +22,6 @@ class TestCase extends \PHPUnit_Framework_TestCase
         foreach ($beanList as $moduleName => $object_name) {
             $this->setUpBeanFactory($moduleName);
         }
-
-        \TrackerManager::getInstance()->pause();
     }
 
     /**
