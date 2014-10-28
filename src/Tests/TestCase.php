@@ -42,7 +42,6 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
         parent::tearDown();
 
         foreach ($beanList as $moduleName => $object_name) {
-            $this->getBeanFactory($moduleName)->removeAllCreated();
             $this->tearDownBeanFactory($moduleName);
         }
     }
