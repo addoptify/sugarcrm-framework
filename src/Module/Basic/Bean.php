@@ -27,4 +27,23 @@ class Bean extends \Basic
         return $return;
     }
 
+    /**
+     * @return bool
+     */
+    public function isNew()
+    {
+        return empty($this->id) || !empty($this->new_with_id);
+    }
+
+    /**
+     * @param string $fieldName
+     * @return bool
+     */
+    public function isFieldChanged($fieldName)
+    {
+        $currentValue = isset($this->{$fieldName}) ? $this->{$fieldName} : null;
+        $previousValue = isset($this->fetched_row[$fieldName]) ? $this->fetched_row[$fieldName] : null;
+        return $currentValue != $previousValue;
+    }
+
 }
