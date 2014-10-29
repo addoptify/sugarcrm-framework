@@ -26,18 +26,16 @@ class MockBeanFactory extends BeanFactory
     }
 
     /**
+     * @param \SugarBean $bean
      * @param array $fields
-     * @return \SugarBean
      */
-    public function create(array $fields = array ())
+    protected function populateFields(\SugarBean $bean, array $fields)
     {
-        $bean = parent::create($fields);
+        parent::populateFields($bean, $fields);
 
         if (empty($bean->name)) {
             $bean->name = $bean->getObjectName() . '_' . mt_rand();
         }
-
-        return $bean;
     }
 
     /**

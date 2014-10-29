@@ -67,11 +67,21 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
     /**
      * @param $moduleName
      * @param array $fields
+     * @param bool $save
      * @return \SugarBean
      */
-    public function createBean($moduleName, array $fields = array())
+    public function createBean($moduleName, array $fields = array(), $save = false)
     {
-        return $this->getBeanFactory($moduleName)->create($fields);
+        return $this->getBeanFactory($moduleName)->create($fields, $save);
+    }
+
+    /**
+     * @param \SugarBean $bean
+     */
+    public function saveAndReload(\SugarBean $bean)
+    {
+        $bean->save();
+        $bean->retrieve($bean->id);
     }
 
 }

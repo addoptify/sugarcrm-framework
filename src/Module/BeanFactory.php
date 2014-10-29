@@ -90,12 +90,30 @@ class BeanFactory
 
     /**
      * @param array $fields
+     * @param bool $save
      * @return \SugarBean
      */
-    public function create(array $fields = array())
+    public function create(array $fields = array(), $save = false)
     {
         $bean = $this->newBean();
 
+        $this->populateFields($bean, $fields);
+
+        $this->created[] = $bean;
+
+        if ($save) {
+            $bean->save();
+        }
+
+        return $bean;
+    }
+
+    /**
+     * @param \SugarBean $bean
+     * @param array $fields
+     */
+    protected function populateFields(\SugarBean $bean, array $fields)
+    {
         $fieldDefinitions = $bean->getFieldDefinitions();
 
         foreach ($fields as $fieldName => $fieldValue) {
@@ -107,10 +125,6 @@ class BeanFactory
         if (!empty($bean->id)) {
             $bean->new_with_id = true;
         }
-
-        $this->created[] = $bean;
-
-        return $bean;
     }
 
     /**
