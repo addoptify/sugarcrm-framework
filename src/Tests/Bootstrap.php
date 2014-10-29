@@ -107,7 +107,8 @@ class Bootstrap
      */
     public static function disableLogging()
     {
-        \LoggerManager::getLogger()->setLevel('fatal');
+        $GLOBALS['log'] = \LoggerManager::getLogger();
+        $GLOBALS['log']->setLevel('fatal');
     }
 
     /**
