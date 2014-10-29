@@ -1,6 +1,6 @@
 <?php
 
-namespace DRI\SugarCRM\Framework\Composer;
+namespace DRI\SugarCRM\Composer;
 
 use Composer\Script\CommandEvent;
 
