@@ -8,7 +8,7 @@ namespace DRI\SugarCRM\Module\LogicHooks;
 class Relationship
 {
 
-    const CASCADE_VARDEF_KEY = "dri_cascade";
+    const CASCADE_VARDEF_KEY = "cascade";
 
     /**
      * @param \SugarBean $bean
