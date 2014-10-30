@@ -10,8 +10,7 @@
         "psr-4": { "DRI\\SugarCRM\\": "src/" }
     },
     "require": {
-        "dri-nordic/sugarcrm-database": "dev-master",
-        "dri-nordic/sugarcrm-validation": "dev-master"
+        "dri-nordic/sugarcrm-database": "dev-master"
     },
     "repositories": [
         {

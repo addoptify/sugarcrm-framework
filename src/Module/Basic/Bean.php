@@ -21,7 +21,7 @@ class Bean extends \Basic
         $return = parent::load_relationship($rel_name);
 
         if (!$return) {
-            throw Exception::unableToLoadRelationshipException($rel_name);
+            // throw Exception::unableToLoadRelationshipException($rel_name);
         }
 
         return $return;
