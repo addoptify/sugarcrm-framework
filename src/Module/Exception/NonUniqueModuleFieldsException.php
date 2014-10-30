@@ -5,7 +5,7 @@ namespace DRI\SugarCRM\Module\Exception;
 /**
  * @author Emil Kilhage
  */
-class UniqueModuleFieldsException extends ModuleFieldsException
+class NonUniqueModuleFieldsException extends ModuleFieldsException
 {
 
 }
