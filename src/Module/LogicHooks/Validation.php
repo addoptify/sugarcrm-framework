@@ -13,7 +13,7 @@ class Validation
     /**
      * @param \SugarBean $bean
      *
-     * @throws Exception\NonUniqueModuleFieldsException
+     * @throws Exception\DuplicateFieldSetOnRecordException
      * @throws \SugarQueryException
      */
     public function validateUniqueIndices(\SugarBean $bean)
@@ -57,8 +57,8 @@ class Validation
                     );
                 }
 
-                throw new Exception\NonUniqueModuleFieldsException(
-                    "ERR_VALIDATION_UNIQUE_FIELD_INDEX_ALERT_MESSAGE",
+                throw new Exception\DuplicateFieldSetOnRecordException(
+                    "ERR_DUPLICATE_RECORD_MESSAGE",
                     $bean->module_dir,
                     $errors
                 );
