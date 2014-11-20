@@ -38,6 +38,12 @@ class ModuleFieldsException extends ValidationException
         $module,
         array $errors = array ())
     {
+        if (is_array($module)) {
+            $errors = $module;
+            $module = $messageLabel;
+            $messageLabel = "CUSTOM_EXCEPTION_FIELD_VALIDATION_FAILURE";
+        }
+
         parent::__construct($messageLabel);
         $this->setExtraData("module", $module);
         $this->setExtraData("validation_errors", $errors);
