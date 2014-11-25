@@ -3,7 +3,9 @@
 namespace DRI\SugarCRM\Tests;
 
 use \DRI\SugarCRM\Module\BeanFactory;
-use \DRI\SugarCRM\Module\Tests\MockBeanFactory;;
+use \DRI\SugarCRM\Module\Tests\MockBeanFactory;
+
+require_once 'include/api/RestService.php';
 
 /**
  * @author Emil Kilhage
@@ -65,12 +67,22 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @return \RestService
+     */
+    protected function createRestService()
+    {
+        $api = new \RestService();
+        $api->user = $GLOBALS["current_user"];
+        return $api;
+    }
+
+    /**
      * @param $moduleName
      * @param array $fields
      * @param bool $save
      * @return \SugarBean
      */
-    public function createBean($moduleName, array $fields = array(), $save = false)
+    protected function createBean($moduleName, array $fields = array(), $save = false)
     {
         return $this->getBeanFactory($moduleName)->create($fields, $save);
     }
@@ -78,7 +90,15 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
     /**
      * @param \SugarBean $bean
      */
-    public function saveAndReload(\SugarBean $bean)
+    protected function addCreated(\SugarBean $bean)
+    {
+        $this->getBeanFactory($bean->module_dir)->addCreated($bean);
+    }
+
+    /**
+     * @param \SugarBean $bean
+     */
+    protected function saveAndReload(\SugarBean $bean)
     {
         $bean->save();
         $bean->retrieve($bean->id);
@@ -89,7 +109,7 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
      * @param bool $save
      * @return \Account
      */
-    public function createAccount(array $fields = array(), $save = false)
+    protected function createAccount(array $fields = array(), $save = false)
     {
         return $this->createBean("Accounts", $fields, $save);
     }
@@ -99,7 +119,7 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
      * @param bool $save
      * @return \Contact
      */
-    public function createContact(array $fields = array(), $save = false)
+    protected function createContact(array $fields = array(), $save = false)
     {
         return $this->createBean("Contacts", $fields, $save);
     }
@@ -109,7 +129,7 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
      * @param bool $save
      * @return \Opportunity
      */
-    public function createOpportunity(array $fields = array(), $save = false)
+    protected function createOpportunity(array $fields = array(), $save = false)
     {
         return $this->createBean("Opportunities", $fields, $save);
     }
@@ -119,7 +139,7 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
      * @param bool $save
      * @return \Call
      */
-    public function createCall(array $fields = array(), $save = false)
+    protected function createCall(array $fields = array(), $save = false)
     {
         return $this->createBean("Calls", $fields, $save);
     }
@@ -129,7 +149,7 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
      * @param bool $save
      * @return \Meeting
      */
-    public function createMeeting(array $fields = array(), $save = false)
+    protected function createMeeting(array $fields = array(), $save = false)
     {
         return $this->createBean("Meetings", $fields, $save);
     }
@@ -139,7 +159,7 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
      * @param bool $save
      * @return \Email
      */
-    public function createEmail(array $fields = array(), $save = false)
+    protected function createEmail(array $fields = array(), $save = false)
     {
         return $this->createBean("Emails", $fields, $save);
     }
@@ -149,7 +169,7 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
      * @param bool $save
      * @return \Lead
      */
-    public function createLead(array $fields = array(), $save = false)
+    protected function createLead(array $fields = array(), $save = false)
     {
         return $this->createBean("Leads", $fields, $save);
     }
@@ -159,7 +179,7 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
      * @param bool $save
      * @return \Note
      */
-    public function createNote(array $fields = array(), $save = false)
+    protected function createNote(array $fields = array(), $save = false)
     {
         return $this->createBean("Notes", $fields, $save);
     }
@@ -169,7 +189,7 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
      * @param bool $save
      * @return \aCase
      */
-    public function createCase(array $fields = array(), $save = false)
+    protected function createCase(array $fields = array(), $save = false)
     {
         return $this->createBean("Cases", $fields, $save);
     }
@@ -179,7 +199,7 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
      * @param bool $save
      * @return \User
      */
-    public function createUser(array $fields = array(), $save = false)
+    protected function createUser(array $fields = array(), $save = false)
     {
         return $this->createBean("Users", $fields, $save);
     }

@@ -99,13 +99,21 @@ class BeanFactory
 
         $this->populateFields($bean, $fields);
 
-        $this->created[] = $bean;
+        $this->addCreated($bean);
 
         if ($save) {
             $bean->save();
         }
 
         return $bean;
+    }
+
+    /**
+     * @param \SugarBean $bean
+     */
+    public function addCreated(\SugarBean $bean)
+    {
+        $this->created[] = $bean;
     }
 
     /**
