@@ -10,16 +10,45 @@ class Relationship
 
     const CASCADE_VARDEF_KEY = "cascade";
 
-    /**
+    private static $processing = array ();
+    private static $enabled = array ("update" => true, "deleted" => true);
+
+    public static function enableCascadeUpdate()
+    {
+        self::$enabled["update"] = true;
+    }
+
+    public static function disableCascadeUpdate()
+    {
+        self::$enabled["update"] = false;
+    }
+
+    public static function enableCascadeDelete()
+    {
+        self::$enabled["deleted"] = true;
+    }
+
+    public static function disableCascadeDelete()
+    {
+        self::$enabled["deleted"] = false;
+    }
+ 
+   /**
      * @param \SugarBean $bean
      */
     public function cascadeMarkDeletedAfter(\SugarBean $bean)
     {
-        foreach ($this->findCascadeLinksByType($bean, "delete") as $linkDef) {
-            if ($bean->load_relationship($linkDef["name"])) {
-                foreach ($bean->{$linkDef["name"]}->getBeans() as $related) {
-                    /** @var \SugarBean $related */
-                    $related->mark_deleted($related->id);
+        if (self::$enabled["deleted"])
+        {
+            foreach ($this->findCascadeLinksByType($bean, "delete") as $linkDef)
+            {
+                if ($bean->load_relationship($linkDef["name"]))
+                {
+                    foreach ($bean->{$linkDef["name"]}->getBeans() as $related)
+                    {
+                        /** @var \SugarBean $related */
+                        $related->mark_deleted($related->id);
+                    }
                 }
             }
         }
@@ -30,11 +59,22 @@ class Relationship
      */
     public function cascadeUpdateAfter(\SugarBean $bean)
     {
-        foreach ($this->findCascadeLinksByType($bean, "update") as $linkDef) {
-            if ($bean->load_relationship($linkDef["name"])) {
-                foreach ($bean->{$linkDef["name"]}->getBeans() as $related) {
-                    /** @var \SugarBean $related */
-                    $related->save();
+        if (self::$enabled["update"])
+        {
+            foreach ($this->findCascadeLinksByType($bean, "update") as $linkDef)
+            {
+                if ($bean->load_relationship($linkDef["name"]))
+                {
+                    foreach ($bean->{$linkDef["name"]}->getBeans() as $related)
+                    {
+                        if (!isset(self::$processing["update"][$related->module_dir][$related->id]))
+                        {
+                            /** @var \SugarBean $related */
+                            self::$processing["update"][$related->module_dir][$related->id] = true;
+                            $related->save();
+                            unset(self::$processing["update"][$related->module_dir][$related->id]);
+                        }
+                    }
                 }
             }
         }
