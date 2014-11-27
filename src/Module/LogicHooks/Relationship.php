@@ -36,6 +36,14 @@ class Relationship
    /**
      * @param \SugarBean $bean
      */
+    public function saveFetchedRow(\SugarBean $bean)
+    {
+        $bean->fetched_row_before_save = $bean->fetched_row;
+    }
+
+   /**
+     * @param \SugarBean $bean
+     */
     public function cascadeMarkDeletedAfter(\SugarBean $bean)
     {
         if (self::$enabled["deleted"])
@@ -63,7 +71,24 @@ class Relationship
         {
             foreach ($this->findCascadeLinksByType($bean, "update") as $linkDef)
             {
-                if ($bean->load_relationship($linkDef["name"]))
+                $resave = false;
+                if (isset($linkDef[self::CASCADE_VARDEF_KEY]["update"]) && is_array($linkDef[self::CASCADE_VARDEF_KEY]["update"]) )
+                {
+                    foreach ($linkDef[self::CASCADE_VARDEF_KEY]["update"] as $fieldname)
+                    {
+                        if ($bean->$fieldname != $bean->fetched_row_before_save[$fieldname] )
+                        {
+                            $resave = true;
+                            break;
+                        }
+                    }
+                }
+                else
+                {
+                    $resave = true;
+                }
+
+                if ($resave && $bean->load_relationship($linkDef["name"]))
                 {
                     foreach ($bean->{$linkDef["name"]}->getBeans() as $related)
                     {
@@ -100,7 +125,7 @@ class Relationship
                         throw new \InvalidArgumentException();
                     }
 
-                    if (in_array($type, $cascade)) {
+                    if (in_array($type, $cascade) || array_key_exists($type, $cascade)) {
                         $linkDefs[] = $def;
                     }
                 }
