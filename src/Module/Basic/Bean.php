@@ -3,6 +3,7 @@
 namespace DRI\SugarCRM\Module\Basic;
 
 use \DRI\SugarCRM\Module\Exception;
+use DRI\SugarCRM\Module\LogicHooks\Utils as LogicHooksUtils;
 
 /**
  * @author Emil Kilhage
@@ -32,7 +33,7 @@ class Bean extends \Basic
      */
     public function isNew()
     {
-        return empty($this->id) || !empty($this->new_with_id);
+        return LogicHooksUtils::isNew($this);
     }
 
     /**
@@ -41,9 +42,7 @@ class Bean extends \Basic
      */
     public function isFieldChanged($fieldName)
     {
-        $currentValue = isset($this->{$fieldName}) ? $this->{$fieldName} : null;
-        $previousValue = isset($this->fetched_row[$fieldName]) ? $this->fetched_row[$fieldName] : null;
-        return $currentValue != $previousValue;
+        return LogicHooksUtils::isFieldChanged($this, $fieldName);
     }
 
 }
