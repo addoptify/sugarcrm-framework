@@ -22,7 +22,7 @@ class MockResponse
      * @param bool $success
      * @param string $errorMessage
      */
-    public function __construct($success, $errorMessage = null)
+    public function __construct($success = true, $errorMessage = null)
     {
         $this->success = $success;
         $this->errorMessage = $errorMessage;

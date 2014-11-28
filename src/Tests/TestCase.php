@@ -2,8 +2,11 @@
 
 namespace DRI\SugarCRM\Tests;
 
+use DRI\SugarCRM\Emailer\Transport as EmailerTransport;
 use \DRI\SugarCRM\Module\BeanFactory;
 use \DRI\SugarCRM\Module\Tests\MockBeanFactory;
+use DRI\SugarCRM\Tests\Emailer\MockResponse as MockEmailResponse;
+use DRI\SugarCRM\Tests\Emailer\MockTransport as MockEmailTransport;
 
 require_once 'include/api/RestService.php';
 
@@ -12,6 +15,11 @@ require_once 'include/api/RestService.php';
  */
 abstract class TestCase extends \PHPUnit_Framework_TestCase
 {
+
+    /**
+     * @var MockEmailTransport
+     */
+    protected $emailTransport;
 
     /**
      *
@@ -24,6 +32,9 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
         foreach ($beanList as $moduleName => $object_name) {
             $this->setUpBeanFactory($moduleName);
         }
+
+        $this->emailTransport = new MockEmailTransport();
+        EmailerTransport::setInstance($this->emailTransport);
     }
 
     /**
@@ -74,6 +85,15 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
         $api = new \RestService();
         $api->user = $GLOBALS["current_user"];
         return $api;
+    }
+
+    /**
+     * @param bool $success
+     * @param string $errorMessage
+     */
+    protected function queueEmailResponse($success = true, $errorMessage = "")
+    {
+        $this->emailTransport->queueResponse(new MockEmailResponse($success, $errorMessage));
     }
 
     /**

@@ -22,6 +22,7 @@ class MockTransport extends Transport
 
     protected function create()
     {
+        /** @var MockDriver $return */
         $return = parent::create();
 
         $response = array_shift($this->responses);
