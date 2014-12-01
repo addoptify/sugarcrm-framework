@@ -151,7 +151,7 @@ class BeanRepository
         $limit = null,
         $offset = null
     ) {
-        $ids = $this->findIdsBy("id", $criteria, $orderBy, $limit, $offset);
+        $ids = $this->findIdsBy($criteria, $orderBy, $limit, $offset);
 
         $beans = array ();
 
