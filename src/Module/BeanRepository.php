@@ -151,20 +151,45 @@ class BeanRepository
         $limit = null,
         $offset = null
     ) {
-        $query = $this->createQuery("id", $criteria, $orderBy, $limit, $offset);
+        $ids = $this->findIdsBy("id", $criteria, $orderBy, $limit, $offset);
 
-        $results = $query->execute();
         $beans = array ();
 
-        foreach ($results as $row) {
+        foreach ($ids as $id) {
             try {
-                $beans[] = $this->find($row["id"]);
+                $beans[] = $this->find($id);
             } catch (Exception\NoResultException $e) {
 
             }
         }
 
         return $beans;
+    }
+
+    /**
+     * @param array      $criteria
+     * @param array|null $orderBy
+     * @param int|null   $limit
+     * @param int|null   $offset
+     *
+     * @return array The ids.
+     */
+    public function findIdsBy(
+        array $criteria,
+        array $orderBy = null,
+        $limit = null,
+        $offset = null
+    ) {
+        $query = $this->createQuery("id", $criteria, $orderBy, $limit, $offset);
+
+        $results = $query->execute();
+        $ids = array ();
+
+        foreach ($results as $row) {
+            $ids[] = $row["id"];
+        }
+
+        return $ids;
     }
 
     /**
@@ -176,6 +201,21 @@ class BeanRepository
      * @throws Exception\NonUniqueResultException
      */
     public function findOneBy(array $criteria, array $orderBy = array ())
+    {
+        $id = $this->findOneIdBy("id", $criteria, $orderBy);
+
+        return $this->find($id);
+    }
+
+    /**
+     * @param array $criteria
+     * @param array $orderBy
+     *
+     * @return string
+     * @throws Exception\NoResultException
+     * @throws Exception\NonUniqueResultException
+     */
+    public function findOneIdBy(array $criteria, array $orderBy = array ())
     {
         $query = $this->createQuery("id", $criteria, $orderBy);
 
@@ -189,7 +229,7 @@ class BeanRepository
             throw new Exception\NonUniqueResultException("Non Unique Result");
         }
 
-        return $this->find($results[0]["id"]);
+        return $results[0]["id"];
     }
 
     /**
