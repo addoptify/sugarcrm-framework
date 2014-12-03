@@ -224,4 +224,64 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
         return $this->createBean("Users", $fields, $save);
     }
 
+    /**
+     * @param array $fields
+     * @param bool $save
+     * @return \Quote
+     */
+    protected function createQuote(array $fields = array(), $save = false)
+    {
+        return $this->createBean("Quotes", $fields, $save);
+    }
+
+    /**
+     * @param array $fields
+     * @param bool $save
+     * @return \ProductBundle
+     */
+    protected function createProductBundle(array $fields = array(), $save = false)
+    {
+        return $this->createBean("ProductBundles", $fields, $save);
+    }
+
+    /**
+     * @param array $fields
+     * @param bool $save
+     * @return \Product
+     */
+    protected function createProduct(array $fields = array(), $save = false)
+    {
+        return $this->createBean("Products", $fields, $save);
+    }
+
+    /**
+     * @param array $fields
+     * @param bool $save
+     * @return \ProductTemplate
+     */
+    protected function createProductTemplate(array $fields = array(), $save = false)
+    {
+        return $this->createBean("ProductTemplates", $fields, $save);
+    }
+
+    /**
+     * @param array $fields
+     * @param bool $save
+     * @return \ProductType
+     */
+    protected function createProductType(array $fields = array(), $save = false)
+    {
+        return $this->createBean("ProductTypes", $fields, $save);
+    }
+
+    /**
+     * @param array $fields
+     * @param bool $save
+     * @return \ProductCategory
+     */
+    protected function createProductCategory(array $fields = array(), $save = false)
+    {
+        return $this->createBean("ProductCategories", $fields, $save);
+    }
+
 }
