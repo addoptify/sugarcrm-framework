@@ -34,4 +34,26 @@ class Utils
         return $currentValue != $previousValue;
     }
 
+    /**
+     * @param \SugarBean $bean
+     * @param $fieldName
+     *
+     * @return bool
+     */
+    public static function isNewOrFieldChanged(\SugarBean $bean, $fieldName)
+    {
+        return static::isNew($bean) || static::isFieldChanged($bean, $fieldName);
+    }
+
+    /**
+     * @param \SugarBean $bean
+     * @param $fieldName
+     *
+     * @return bool
+     */
+    public static function isNewAndFieldChanged(\SugarBean $bean, $fieldName)
+    {
+        return static::isNew($bean) && static::isFieldChanged($bean, $fieldName);
+    }
+
 }
