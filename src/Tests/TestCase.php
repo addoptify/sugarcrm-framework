@@ -2,6 +2,7 @@
 
 namespace DRI\SugarCRM\Tests;
 
+use DRI\SugarCRM\Component\Database\TransactionalManager;
 use DRI\SugarCRM\Emailer\Transport as EmailerTransport;
 use \DRI\SugarCRM\Module\BeanFactory;
 use \DRI\SugarCRM\Module\Tests\MockBeanFactory;
@@ -22,6 +23,16 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
     protected $emailTransport;
 
     /**
+     * @var \DBManager
+     */
+    protected $db;
+
+    /**
+     * @var \TimeDate
+     */
+    protected $timeDate;
+
+    /**
      *
      */
     protected function setUp()
@@ -35,6 +46,13 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
 
         $this->emailTransport = new MockEmailTransport();
         EmailerTransport::setInstance($this->emailTransport);
+
+        $this->db = \DBManagerFactory::getInstance();
+        $this->timeDate = \TimeDate::getInstance();
+
+        if ($this->db instanceof TransactionalManager) {
+            $this->db->beginTransaction();
+        }
     }
 
     /**
@@ -56,6 +74,10 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
 
         foreach ($beanList as $moduleName => $object_name) {
             $this->tearDownBeanFactory($moduleName);
+        }
+
+        if ($this->db instanceof TransactionalManager) {
+            $this->db->rollback();
         }
     }
 
@@ -147,6 +169,16 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
     /**
      * @param array $fields
      * @param bool $save
+     * @return \Contact
+     */
+    protected function createContract(array $fields = array(), $save = false)
+    {
+        return $this->createBean("Contracts", $fields, $save);
+    }
+
+    /**
+     * @param array $fields
+     * @param bool $save
      * @return \Opportunity
      */
     protected function createOpportunity(array $fields = array(), $save = false)
@@ -232,6 +264,26 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
     protected function createQuote(array $fields = array(), $save = false)
     {
         return $this->createBean("Quotes", $fields, $save);
+    }
+
+    /**
+     * @param array $fields
+     * @param bool $save
+     * @return \Quote
+     */
+    protected function createBug(array $fields = array(), $save = false)
+    {
+        return $this->createBean("Bugs", $fields, $save);
+    }
+
+    /**
+     * @param array $fields
+     * @param bool $save
+     * @return \Quote
+     */
+    protected function createDocument(array $fields = array(), $save = false)
+    {
+        return $this->createBean("Documents", $fields, $save);
     }
 
     /**
