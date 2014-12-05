@@ -169,6 +169,16 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
     /**
      * @param array $fields
      * @param bool $save
+     * @return \Contact
+     */
+    protected function createContract(array $fields = array(), $save = false)
+    {
+        return $this->createBean("Contracts", $fields, $save);
+    }
+
+    /**
+     * @param array $fields
+     * @param bool $save
      * @return \Opportunity
      */
     protected function createOpportunity(array $fields = array(), $save = false)
@@ -254,6 +264,26 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
     protected function createQuote(array $fields = array(), $save = false)
     {
         return $this->createBean("Quotes", $fields, $save);
+    }
+
+    /**
+     * @param array $fields
+     * @param bool $save
+     * @return \Quote
+     */
+    protected function createBug(array $fields = array(), $save = false)
+    {
+        return $this->createBean("Bugs", $fields, $save);
+    }
+
+    /**
+     * @param array $fields
+     * @param bool $save
+     * @return \Quote
+     */
+    protected function createDocument(array $fields = array(), $save = false)
+    {
+        return $this->createBean("Documents", $fields, $save);
     }
 
     /**
