@@ -56,4 +56,20 @@ class Utils
         return static::isNew($bean) && static::isFieldChanged($bean, $fieldName);
     }
 
+    /**
+     * @param \SugarBean $bean
+     * @return array
+     */
+    public static function getUniqueIndices(\SugarBean $bean)
+    {
+        $indices = $bean->getIndices();
+        $indices = array_filter($indices,
+            function ($def) {
+                return $def["type"] == "unique";
+            }
+        );
+
+        return $indices;
+    }
+
 }

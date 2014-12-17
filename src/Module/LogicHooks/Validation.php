@@ -18,12 +18,7 @@ class Validation
      */
     public function validateUniqueIndices(\SugarBean $bean)
     {
-        $indices = $bean->getIndices();
-        $indices = array_filter($indices,
-            function ($def) {
-                return $def["type"] == "unique";
-            }
-        );
+        $indices = Utils::getUniqueIndices($bean);
 
         foreach ($indices as $index) {
             $query = new \SugarQuery();
