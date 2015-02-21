@@ -62,6 +62,11 @@ class Email
     protected $replyTo = array ();
 
     /**
+     * @var array
+     */
+    protected $attachments = array ();
+
+    /**
      * @var string
      */
     protected $subject;
@@ -75,6 +80,26 @@ class Email
      * @var bool
      */
     protected $isHtml = true;
+
+    /**
+     * @param $path
+     * @param $fileName
+     */
+    public function addAttachment($path, $fileName)
+    {
+        $this->attachments[] = array (
+            "path" => $path,
+            "fileName" => $fileName,
+        );
+    }
+
+    /**
+     * @return array
+     */
+    public function getAttachments()
+    {
+        return $this->attachments;
+    }
 
     /**
      * @return boolean

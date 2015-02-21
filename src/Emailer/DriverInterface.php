@@ -59,6 +59,12 @@ interface DriverInterface
     public function setBody($body);
 
     /**
+     * @param string $path
+     * @param string $fileName
+     */
+    public function addAttachment($path, $fileName);
+
+    /**
      * @throws Exception
      */
     public function send();
