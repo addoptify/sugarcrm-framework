@@ -26,6 +26,15 @@ class SugarPHPMailer implements DriverInterface
     }
 
     /**
+     * @param string $path
+     * @param string $fileName
+     */
+    public function addAttachment($path, $fileName)
+    {
+        $this->emailer->AddAttachment($path, $fileName);
+    }
+
+    /**
      * @param $isHtml
      */
     public function setIsHtml($isHtml)

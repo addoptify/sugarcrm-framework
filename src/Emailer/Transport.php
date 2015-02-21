@@ -151,6 +151,10 @@ class Transport
                 $emailer->addReplyTo($address, $name);
             }
 
+            foreach ($email->getAttachments() as $attachment) {
+                $emailer->addAttachment($attachment["path"], $attachment["fileName"]);
+            }
+
             $emailer->setSubject($email->getSubject());
             $emailer->setBody($email->getBody());
 
