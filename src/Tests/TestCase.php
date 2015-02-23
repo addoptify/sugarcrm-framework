@@ -53,6 +53,8 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
         if ($this->db instanceof TransactionalManager) {
             $this->db->beginTransaction();
         }
+
+        unset($_SESSION['WORKFLOW_ALERTS']);
     }
 
     /**
