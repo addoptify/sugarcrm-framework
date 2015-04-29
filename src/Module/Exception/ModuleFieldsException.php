@@ -7,7 +7,6 @@ namespace DRI\SugarCRM\Module\Exception;
  */
 class ModuleFieldsException extends ValidationException
 {
-
     /**
      * @var string
      */
@@ -25,28 +24,27 @@ class ModuleFieldsException extends ValidationException
      *     'name' => array (
      *         'required' => true
      *     ),
-     * );
+     * );.
      *
      * throw new \DRI\SugarCRM\Module\Exception\ModuleFieldsException($messageLabel, $errors);
      *
      * @param string $messageLabel
      * @param string $module
-     * @param array $errors
+     * @param array  $errors
      */
     public function __construct(
-        $messageLabel = "CUSTOM_EXCEPTION_FIELD_VALIDATION_FAILURE",
+        $messageLabel = 'CUSTOM_EXCEPTION_FIELD_VALIDATION_FAILURE',
         $module,
-        array $errors = array ())
+        array $errors = array())
     {
         if (is_array($module)) {
             $errors = $module;
             $module = $messageLabel;
-            $messageLabel = "CUSTOM_EXCEPTION_FIELD_VALIDATION_FAILURE";
+            $messageLabel = 'CUSTOM_EXCEPTION_FIELD_VALIDATION_FAILURE';
         }
 
         parent::__construct($messageLabel);
-        $this->setExtraData("module", $module);
-        $this->setExtraData("validation_errors", $errors);
+        $this->setExtraData('module', $module);
+        $this->setExtraData('validation_errors', $errors);
     }
-
 }

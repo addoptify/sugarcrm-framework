@@ -10,7 +10,6 @@ require_once 'modules/Administration/Administration.php';
  */
 class Transport
 {
-
     /**
      * @var Transport
      */
@@ -21,8 +20,10 @@ class Transport
      */
     public static function getInstance()
     {
-        if (!isset(self::$instance))
+        if (!isset(self::$instance)) {
             self::$instance = new self();
+        }
+
         return self::$instance;
     }
 
@@ -37,7 +38,7 @@ class Transport
     /**
      * @var array
      */
-    protected $sent_emails = array ();
+    protected $sent_emails = array();
 
     /**
      * @var
@@ -84,7 +85,6 @@ class Transport
     }
 
     /**
-     * @return null
      */
     public function getLogger()
     {
@@ -99,12 +99,15 @@ class Transport
     {
         $emailer = $this->getDriver();
         $emailer->create();
+
         return $emailer;
     }
 
     /**
      * @param Email $email
+     *
      * @return Email
+     *
      * @throws Exception
      */
     public function send(Email $email)
@@ -152,7 +155,7 @@ class Transport
             }
 
             foreach ($email->getAttachments() as $attachment) {
-                $emailer->addAttachment($attachment["path"], $attachment["fileName"]);
+                $emailer->addAttachment($attachment['path'], $attachment['fileName']);
             }
 
             $emailer->setSubject($email->getSubject());
@@ -161,7 +164,7 @@ class Transport
             $logger->debug("Subject: '{$email->getSubject()}'");
             $logger->debug("Body: '{$email->getBody()}'");
 
-            $logger->info("Sending Email");
+            $logger->info('Sending Email');
 
             if (!$emailer->send()) {
                 $this->throwError($email, $emailer->getError());
@@ -193,5 +196,4 @@ class Transport
     {
         return $this->sent_emails;
     }
-
 }

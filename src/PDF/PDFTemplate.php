@@ -18,7 +18,6 @@ use SugarpdfSmarty;
  */
 class PDFTemplate extends SugarpdfSmarty
 {
-
     /**
      * @var string
      */
@@ -32,10 +31,10 @@ class PDFTemplate extends SugarpdfSmarty
     /**
      * @var array
      */
-    private $data = array ();
+    private $data = array();
 
     /**
-     * Sets the bean to relate template to
+     * Sets the bean to relate template to.
      *
      * @param SugarBean $bean
      */
@@ -69,7 +68,7 @@ class PDFTemplate extends SugarpdfSmarty
         parent::preDisplay();
 
         /** @var PdfManager $pdfTemplate */
-        $pdfTemplate = BeanFactory::getBean("PdfManager", $this->templateId);
+        $pdfTemplate = BeanFactory::getBean('PdfManager', $this->templateId);
 
         $this->templateLocation = $this->buildTemplateFile($pdfTemplate);
 
@@ -77,7 +76,7 @@ class PDFTemplate extends SugarpdfSmarty
 
         $this->ss->assign($this->data);
         $this->ss->assign('fields', $fields);
-        $this->ss->assign("bean", $this->bean);
+        $this->ss->assign('bean', $this->bean);
 
         $this->ss->fetch($this->templateLocation);
     }
@@ -91,7 +90,7 @@ class PDFTemplate extends SugarpdfSmarty
     }
 
     /**
-     * Output the template to an email
+     * Output the template to an email.
      *
      * @return string
      */
@@ -106,10 +105,10 @@ class PDFTemplate extends SugarpdfSmarty
             ob_end_clean();
         }
 
-        $dir = SugarConfig::getInstance()->get("upload_dir");
-        $dir = rtrim($dir, "/");
+        $dir = SugarConfig::getInstance()->get('upload_dir');
+        $dir = rtrim($dir, '/');
 
-        $this->pdfPath = $dir . '/' . create_guid() . '.pdf';
+        $this->pdfPath = $dir.'/'.create_guid().'.pdf';
 
         sugar_file_put_contents($this->pdfPath, $tmp);
 
@@ -125,9 +124,10 @@ class PDFTemplate extends SugarpdfSmarty
     }
 
     /**
-     * Builds the template and caches it
+     * Builds the template and caches it.
      *
      * @param PdfManager $pdfTemplate
+     *
      * @return string
      */
     private function buildTemplateFile(PdfManager $pdfTemplate)

@@ -7,5 +7,4 @@ namespace DRI\SugarCRM\Module\Exception;
  */
 class NonUniqueResultException extends QueryException
 {
-
 }

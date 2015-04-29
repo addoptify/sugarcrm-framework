@@ -7,7 +7,6 @@ namespace DRI\SugarCRM\Emailer;
  */
 interface DriverInterface
 {
-
     /**
      *
      */
@@ -73,5 +72,4 @@ interface DriverInterface
      * @return string
      */
     public function getError();
-
 }

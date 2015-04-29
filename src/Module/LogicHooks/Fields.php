@@ -7,7 +7,6 @@ namespace DRI\SugarCRM\Module\LogicHooks;
  */
 class Fields
 {
-
     /**
      * @param \SugarBean $bean
      */
@@ -15,18 +14,18 @@ class Fields
     {
         $indices = Utils::getUniqueIndices($bean);
 
-        $fieldNames = array ();
+        $fieldNames = array();
         foreach ($indices as $index) {
-            foreach ($index["fields"] as $fieldName) {
+            foreach ($index['fields'] as $fieldName) {
                 $def = $bean->getFieldDefinition($fieldName);
-                if (isset($def["type"]) && in_array($def["type"], array ("varchar", "int"))) {
+                if (isset($def['type']) && in_array($def['type'], array('varchar', 'int'))) {
                     $fieldNames[$fieldName] = $fieldName;
                 }
             }
         }
 
         if (!empty($fieldNames)) {
-            $sets = array ();
+            $sets = array();
             foreach ($fieldNames as $fieldName) {
                 if (!empty($bean->{$fieldName})) {
                     $sets[] = "$fieldName = null";
@@ -35,10 +34,9 @@ class Fields
             }
 
             if (!empty($sets)) {
-                $sql = "UPDATE {$bean->getTableName()} SET " . implode(", ", $sets);
+                $sql = "UPDATE {$bean->getTableName()} SET ".implode(', ', $sets);
                 \DBManagerFactory::getInstance()->query($sql);
             }
         }
     }
-
 }

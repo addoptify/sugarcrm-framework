@@ -2,7 +2,7 @@
 
 namespace DRI\SugarCRM\Module\Basic;
 
-use \DRI\SugarCRM\Module\Exception;
+use DRI\SugarCRM\Module\Exception;
 use DRI\SugarCRM\Module\LogicHooks\Utils as LogicHooksUtils;
 
 /**
@@ -10,11 +10,11 @@ use DRI\SugarCRM\Module\LogicHooks\Utils as LogicHooksUtils;
  */
 class Bean extends \Basic
 {
-
     /**
      * @param string $rel_name
      *
      * @return \bool
+     *
      * @throws Exception
      */
     public function load_relationship($rel_name)
@@ -38,11 +38,11 @@ class Bean extends \Basic
 
     /**
      * @param string $fieldName
+     *
      * @return bool
      */
     public function isFieldChanged($fieldName)
     {
         return LogicHooksUtils::isFieldChanged($this, $fieldName);
     }
-
 }

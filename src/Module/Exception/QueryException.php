@@ -9,5 +9,4 @@ use DRI\SugarCRM\Module\Exception;
  */
 class QueryException extends Exception
 {
-
 }

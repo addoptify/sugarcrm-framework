@@ -7,14 +7,13 @@ namespace DRI\SugarCRM\Module;
  */
 class Exception extends \SugarApiException
 {
-
     /**
      * @param string $name
+     *
      * @return Exception
      */
     public static function unableToLoadRelationshipException($name)
     {
         return new self("Unable to load relationship: $name");
     }
-
 }

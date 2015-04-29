@@ -7,7 +7,6 @@ namespace DRI\SugarCRM\Tests\Emailer;
  */
 class MockResponse
 {
-
     /**
      * @var bool
      */
@@ -19,7 +18,7 @@ class MockResponse
     protected $errorMessage;
 
     /**
-     * @param bool $success
+     * @param bool   $success
      * @param string $errorMessage
      */
     public function __construct($success = true, $errorMessage = null)
@@ -59,5 +58,4 @@ class MockResponse
     {
         $this->errorMessage = $errorMessage;
     }
-
 }

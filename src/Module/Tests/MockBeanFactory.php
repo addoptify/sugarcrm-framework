@@ -9,9 +9,9 @@ use DRI\SugarCRM\Module\BeanFactory;
  */
 class MockBeanFactory extends BeanFactory
 {
-
     /**
      * @param $moduleName
+     *
      * @return BeanFactory
      */
     public static function getClassName($moduleName)
@@ -27,14 +27,14 @@ class MockBeanFactory extends BeanFactory
 
     /**
      * @param \SugarBean $bean
-     * @param array $fields
+     * @param array      $fields
      */
     protected function populateFields(\SugarBean $bean, array $fields)
     {
         parent::populateFields($bean, $fields);
 
         if (empty($bean->name)) {
-            $bean->name = $bean->getObjectName() . '_' . mt_rand();
+            $bean->name = $bean->getObjectName().'_'.mt_rand();
         }
     }
 
@@ -76,5 +76,4 @@ class MockBeanFactory extends BeanFactory
     {
         $this->removeAllCreated();
     }
-
 }

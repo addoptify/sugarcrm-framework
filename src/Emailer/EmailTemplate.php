@@ -2,14 +2,13 @@
 
 namespace DRI\SugarCRM\Emailer;
 
-require_once "modules/PdfManager/PdfManagerHelper.php";
+require_once 'modules/PdfManager/PdfManagerHelper.php';
 
 /**
  * @author Emil Kilhage
  */
 class EmailTemplate
 {
-
     /**
      * @var string
      */
@@ -43,7 +42,7 @@ class EmailTemplate
     /**
      * @var array
      */
-    private $data = array ();
+    private $data = array();
 
     /**
      * @param string $key
@@ -71,7 +70,7 @@ class EmailTemplate
      */
     public function getEmailTemplate()
     {
-        return \BeanFactory::getBean("EmailTemplates", $this->templateId);
+        return \BeanFactory::getBean('EmailTemplates', $this->templateId);
     }
 
     /**
@@ -89,8 +88,8 @@ class EmailTemplate
      */
     private function buildCache()
     {
-        $this->subjectCachePath = $this->getTemplateCacheFile("subject");
-        $this->bodyCachePath = $this->getTemplateCacheFile("body");
+        $this->subjectCachePath = $this->getTemplateCacheFile('subject');
+        $this->bodyCachePath = $this->getTemplateCacheFile('body');
 
         $emailTemplate = $this->getEmailTemplate();
 
@@ -136,13 +135,14 @@ class EmailTemplate
 
     /**
      * @param string $name
+     *
      * @return string
      */
     private function getTemplateCacheFile($name)
     {
         return sugar_cached(
             sprintf(
-                "modules/EmailTemplates/%s.%s.html",
+                'modules/EmailTemplates/%s.%s.html',
                 $this->templateId,
                 $name
             )
@@ -164,5 +164,4 @@ class EmailTemplate
     {
         return $this->body;
     }
-
 }

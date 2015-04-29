@@ -7,7 +7,6 @@ namespace DRI\SugarCRM\Emailer;
  */
 class Exception extends \Exception
 {
-
     /**
      * @var Email
      */
@@ -15,7 +14,7 @@ class Exception extends \Exception
 
     /**
      * @param string $message
-     * @param Email $email
+     * @param Email  $email
      */
     public function __construct($message, Email $email)
     {
@@ -30,5 +29,4 @@ class Exception extends \Exception
     {
         return $this->email;
     }
-
 }
