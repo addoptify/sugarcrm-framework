@@ -54,6 +54,7 @@ class Bootstrap
         global $app_list_strings;
         global $app_strings;
         global $mod_strings;
+        global $bwcModules;
 
         require_once 'include/entryPoint.php';
 
