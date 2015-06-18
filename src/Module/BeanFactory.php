@@ -3,20 +3,20 @@
 namespace DRI\SugarCRM\Module;
 
 /**
- * Manages creation of new beans
+ * Manages creation of new beans.
  *
  * @author Emil Kilhage
  */
 class BeanFactory
 {
-
     /**
      * @var BeanFactory[]
      */
-    private static $instances = array ();
+    private static $instances = array();
 
     /**
      * @param string $moduleName
+     *
      * @return BeanFactory
      */
     public static function getInstance($moduleName)
@@ -39,16 +39,19 @@ class BeanFactory
 
     /**
      * @param string $moduleName
+     *
      * @return BeanFactory
      */
     public static function factory($moduleName)
     {
         $className = static::getClassName($moduleName);
+
         return new $className($moduleName);
     }
 
     /**
      * @param $moduleName
+     *
      * @return BeanFactory
      */
     public static function getClassName($moduleName)
@@ -70,7 +73,7 @@ class BeanFactory
     /**
      * @var array
      */
-    protected $created = array ();
+    protected $created = array();
 
     /**
      * @param string $moduleName
@@ -90,7 +93,8 @@ class BeanFactory
 
     /**
      * @param array $fields
-     * @param bool $save
+     * @param bool  $save
+     *
      * @return \SugarBean
      */
     public function create(array $fields = array(), $save = false)
@@ -118,7 +122,7 @@ class BeanFactory
 
     /**
      * @param \SugarBean $bean
-     * @param array $fields
+     * @param array      $fields
      */
     protected function populateFields(\SugarBean $bean, array $fields)
     {
@@ -140,7 +144,7 @@ class BeanFactory
      */
     public function getCreatedIds()
     {
-        $ids = array ();
+        $ids = array();
 
         foreach ($this->getCreated() as $bean) {
             if (!empty($bean->id)) {
@@ -164,7 +168,6 @@ class BeanFactory
      */
     public function reset()
     {
-        $this->created = array ();
+        $this->created = array();
     }
-
 }

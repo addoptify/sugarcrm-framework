@@ -9,7 +9,6 @@ use DRI\SugarCRM\Emailer\DriverInterface;
  */
 class SugarPHPMailer implements DriverInterface
 {
-
     /**
      * @var \SugarPHPMailer
      */
@@ -105,6 +104,7 @@ class SugarPHPMailer implements DriverInterface
 
     /**
      * @return bool
+     *
      * @throws \Exception
      * @throws \phpmailerException
      */
@@ -122,5 +122,4 @@ class SugarPHPMailer implements DriverInterface
     {
         return $this->emailer->ErrorInfo;
     }
-
 }

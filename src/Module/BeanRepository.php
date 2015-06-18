@@ -16,14 +16,14 @@ namespace DRI\SugarCRM\Module;
  */
 class BeanRepository
 {
-
     /**
      * @var BeanFactory[]
      */
-    private static $instances = array ();
+    private static $instances = array();
 
     /**
      * @param string $moduleName
+     *
      * @return BeanRepository
      */
     public static function getInstance($moduleName)
@@ -46,16 +46,19 @@ class BeanRepository
 
     /**
      * @param string $moduleName
+     *
      * @return BeanRepository
      */
     public static function factory($moduleName)
     {
         $className = static::getClassName($moduleName);
+
         return new $className($moduleName);
     }
 
     /**
      * @param $moduleName
+     *
      * @return BeanRepository
      */
     public static function getClassName($moduleName)
@@ -92,11 +95,12 @@ class BeanRepository
 
     /**
      * Retrieves a bean with id $id and
-     * returns a instance of the retrieved bean
+     * returns a instance of the retrieved bean.
      *
      * @param string $id: the id of the bean that should be retrieved
      *
      * @return \SugarBean
+     *
      * @throws Exception\NoResultException
      */
     public function find($id)
@@ -113,16 +117,18 @@ class BeanRepository
 
     /**
      * Retrieves a bean with name $name and
-     * returns a instance of the retrieved bean
+     * returns a instance of the retrieved bean.
      *
      * @param string $name: the name of the bean that should be retrieved
+     *
      * @return \SugarBean
+     *
      * @throws Exception\NoResultException
      * @throws Exception\NonUniqueResultException
      */
     public function findOneByName($name)
     {
-        return $this->findOneBy(array ("name" => $name));
+        return $this->findOneBy(array('name' => $name));
     }
 
     /**
@@ -153,13 +159,12 @@ class BeanRepository
     ) {
         $ids = $this->findIdsBy($criteria, $orderBy, $limit, $offset);
 
-        $beans = array ();
+        $beans = array();
 
         foreach ($ids as $id) {
             try {
                 $beans[] = $this->find($id);
             } catch (Exception\NoResultException $e) {
-
             }
         }
 
@@ -180,13 +185,13 @@ class BeanRepository
         $limit = null,
         $offset = null
     ) {
-        $query = $this->createQuery("id", $criteria, $orderBy, $limit, $offset);
+        $query = $this->createQuery('id', $criteria, $orderBy, $limit, $offset);
 
         $results = $query->execute();
-        $ids = array ();
+        $ids = array();
 
         foreach ($results as $row) {
-            $ids[] = $row["id"];
+            $ids[] = $row['id'];
         }
 
         return $ids;
@@ -197,12 +202,13 @@ class BeanRepository
      * @param array $orderBy
      *
      * @return \SugarBean
+     *
      * @throws Exception\NoResultException
      * @throws Exception\NonUniqueResultException
      */
-    public function findOneBy(array $criteria, array $orderBy = array ())
+    public function findOneBy(array $criteria, array $orderBy = array())
     {
-        $id = $this->findOneIdBy("id", $criteria, $orderBy);
+        $id = $this->findOneIdBy('id', $criteria, $orderBy);
 
         return $this->find($id);
     }
@@ -212,34 +218,36 @@ class BeanRepository
      * @param array $orderBy
      *
      * @return string
+     *
      * @throws Exception\NoResultException
      * @throws Exception\NonUniqueResultException
      */
-    public function findOneIdBy(array $criteria, array $orderBy = array ())
+    public function findOneIdBy(array $criteria, array $orderBy = array())
     {
-        $query = $this->createQuery("id", $criteria, $orderBy);
+        $query = $this->createQuery('id', $criteria, $orderBy);
 
         $results = $query->execute();
 
         if (empty($results)) {
-            throw new Exception\NoResultException("No Results Found");
+            throw new Exception\NoResultException('No Results Found');
         }
 
         if (count($results) > 1) {
-            throw new Exception\NonUniqueResultException("Non Unique Result");
+            throw new Exception\NonUniqueResultException('Non Unique Result');
         }
 
-        return $results[0]["id"];
+        return $results[0]['id'];
     }
 
     /**
      * @param null|string|array $select
-     * @param array $criteria
-     * @param array $orderBy
-     * @param int $limit
-     * @param int $offset
+     * @param array             $criteria
+     * @param array             $orderBy
+     * @param int               $limit
+     * @param int               $offset
      *
      * @return \SugarQuery
+     *
      * @throws \SugarQueryException
      */
     protected function createQuery(
@@ -296,5 +304,4 @@ class BeanRepository
     {
         return BeanFactory::getInstance($this->getModuleName());
     }
-
 }

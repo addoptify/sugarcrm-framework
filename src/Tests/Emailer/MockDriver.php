@@ -9,7 +9,6 @@ use DRI\SugarCRM\Emailer\DriverInterface;
  */
 class MockDriver implements DriverInterface
 {
-
     /**
      * @var MockResponse
      */
@@ -36,7 +35,6 @@ class MockDriver implements DriverInterface
      */
     public function setIsHtml($isHtml)
     {
-
     }
 
     /**
@@ -45,7 +43,6 @@ class MockDriver implements DriverInterface
      */
     public function setFrom($address, $name)
     {
-
     }
 
     /**
@@ -54,7 +51,6 @@ class MockDriver implements DriverInterface
      */
     public function addTo($address, $name)
     {
-
     }
 
     /**
@@ -63,7 +59,6 @@ class MockDriver implements DriverInterface
      */
     public function addCC($address, $name)
     {
-
     }
 
     /**
@@ -72,7 +67,6 @@ class MockDriver implements DriverInterface
      */
     public function addBCC($address, $name)
     {
-
     }
 
     /**
@@ -81,7 +75,6 @@ class MockDriver implements DriverInterface
      */
     public function addReplyTo($address, $name)
     {
-
     }
 
     /**
@@ -89,7 +82,6 @@ class MockDriver implements DriverInterface
      */
     public function setSubject($subject)
     {
-
     }
 
     /**
@@ -97,7 +89,6 @@ class MockDriver implements DriverInterface
      */
     public function setBody($body)
     {
-
     }
 
     /**
@@ -130,6 +121,5 @@ class MockDriver implements DriverInterface
      */
     public function create()
     {
-
     }
 }

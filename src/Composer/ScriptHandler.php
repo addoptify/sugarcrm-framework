@@ -9,7 +9,6 @@ use Composer\Script\CommandEvent;
  */
 class ScriptHandler
 {
-
     /**
      * @param CommandEvent $event
      */
@@ -29,5 +28,4 @@ class ScriptHandler
 
         return $options;
     }
-
 }

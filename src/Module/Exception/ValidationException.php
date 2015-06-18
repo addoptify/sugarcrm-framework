@@ -7,7 +7,6 @@ namespace DRI\SugarCRM\Module\Exception;
  */
 class ValidationException extends \SugarApiExceptionRequestMethodFailure
 {
-
     /**
      * @var string
      */
@@ -17,5 +16,4 @@ class ValidationException extends \SugarApiExceptionRequestMethodFailure
      * @var string
      */
     public $messageLabel = 'CUSTOM_EXCEPTION_VALIDATION_FAILURE';
-
 }

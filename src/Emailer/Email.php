@@ -3,7 +3,7 @@
 namespace DRI\SugarCRM\Emailer;
 
 /**
- * $email = new \DRI\SugarCRM\Emailer\Email();
+ * $email = new \DRI\SugarCRM\Emailer\Email();.
  *
  * $email->setSubject($subject);
  * $email->setBody($body);
@@ -30,7 +30,6 @@ namespace DRI\SugarCRM\Emailer;
  */
 class Email
 {
-
     /**
      * @var string
      */
@@ -44,27 +43,27 @@ class Email
     /**
      * @var array
      */
-    protected $to = array ();
+    protected $to = array();
 
     /**
      * @var array
      */
-    protected $cc = array ();
+    protected $cc = array();
 
     /**
      * @var array
      */
-    protected $bcc = array ();
+    protected $bcc = array();
 
     /**
      * @var array
      */
-    protected $replyTo = array ();
+    protected $replyTo = array();
 
     /**
      * @var array
      */
-    protected $attachments = array ();
+    protected $attachments = array();
 
     /**
      * @var string
@@ -87,9 +86,9 @@ class Email
      */
     public function addAttachment($path, $fileName)
     {
-        $this->attachments[] = array (
-            "path" => $path,
-            "fileName" => $fileName,
+        $this->attachments[] = array(
+            'path' => $path,
+            'fileName' => $fileName,
         );
     }
 
@@ -102,7 +101,7 @@ class Email
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isHtml()
     {
@@ -110,7 +109,7 @@ class Email
     }
 
     /**
-     * @param boolean $isHtml
+     * @param bool $isHtml
      */
     public function setIsHtml($isHtml)
     {
@@ -134,16 +133,16 @@ class Email
     }
 
     /**
-     * @param string $address
+     * @param string      $address
      * @param string|null $name
      */
-    public function addBCC($address, $name = "")
+    public function addBCC($address, $name = '')
     {
         if (is_array($address)) {
             foreach ($address as $emailAddress => $name) {
                 if (is_int($emailAddress)) {
                     $emailAddress = $name;
-                    $name = "";
+                    $name = '';
                 }
 
                 $this->bcc[$emailAddress] = $name;
@@ -178,16 +177,16 @@ class Email
     }
 
     /**
-     * @param string $address
+     * @param string      $address
      * @param string|null $name
      */
-    public function addCC($address, $name = "")
+    public function addCC($address, $name = '')
     {
         if (is_array($address)) {
             foreach ($address as $emailAddress => $name) {
                 if (is_int($emailAddress)) {
                     $emailAddress = $name;
-                    $name = "";
+                    $name = '';
                 }
 
                 $this->cc[$emailAddress] = $name;
@@ -198,10 +197,10 @@ class Email
     }
 
     /**
-     * @param string $address
+     * @param string      $address
      * @param string|null $name
      */
-    public function setFrom($address, $name = "")
+    public function setFrom($address, $name = '')
     {
         $this->setFromName($name);
         $this->setFromAddress($address);
@@ -273,15 +272,15 @@ class Email
 
     /**
      * @param string|array $address
-     * @param string|null $name
+     * @param string|null  $name
      */
-    public function addTo($address, $name = "")
+    public function addTo($address, $name = '')
     {
         if (is_array($address)) {
             foreach ($address as $emailAddress => $name) {
                 if (is_int($emailAddress)) {
                     $emailAddress = $name;
-                    $name = "";
+                    $name = '';
                 }
 
                 $this->to[$emailAddress] = $name;
@@ -293,15 +292,15 @@ class Email
 
     /**
      * @param string|array $address
-     * @param string|null $name
+     * @param string|null  $name
      */
-    public function addReplyTo($address, $name = "")
+    public function addReplyTo($address, $name = '')
     {
         if (is_array($address)) {
             foreach ($address as $emailAddress => $name) {
                 if (is_int($emailAddress)) {
                     $emailAddress = $name;
-                    $name = "";
+                    $name = '';
                 }
 
                 $this->replyTo[$emailAddress] = $name;
@@ -313,6 +312,7 @@ class Email
 
     /**
      * @return Email
+     *
      * @throws Exception
      * @throws \Exception
      */
@@ -320,5 +320,4 @@ class Email
     {
         return $this->getTransport()->send($this);
     }
-
 }

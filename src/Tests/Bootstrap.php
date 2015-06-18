@@ -7,7 +7,6 @@ namespace DRI\SugarCRM\Tests;
  */
 class Bootstrap
 {
-
     /**
      *
      */
@@ -55,6 +54,7 @@ class Bootstrap
         global $app_list_strings;
         global $app_strings;
         global $mod_strings;
+        global $bwcModules;
 
         require_once 'include/entryPoint.php';
 
@@ -138,12 +138,11 @@ class Bootstrap
     public static function clearJsFiles()
     {
         $GLOBALS['js_version_key'] = 'testrunner';
-        require_once('modules/Administration/QuickRepairAndRebuild.php');
+        require_once 'modules/Administration/QuickRepairAndRebuild.php';
         $repair = new \RepairAndClear();
         $repair->module_list = array();
         $repair->show_output = false;
         $repair->clearJsLangFiles();
         $repair->clearJsFiles();
     }
-
 }

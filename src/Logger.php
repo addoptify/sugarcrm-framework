@@ -9,7 +9,6 @@ require_once 'include/SugarLogger/SugarLogger.php';
  */
 abstract class Logger extends \SugarLogger
 {
-
     /**
      * @var Logger
      */
@@ -42,7 +41,7 @@ abstract class Logger extends \SugarLogger
     /**
      * @var array
      */
-    private static $_levelMapping = array (
+    private static $_levelMapping = array(
         self::LEVEL_DEBUG => 100,
         self::LEVEL_INFO => 70,
         self::LEVEL_WARN => 50,
@@ -80,7 +79,7 @@ abstract class Logger extends \SugarLogger
      */
     public function getLevel()
     {
-        return \SugarConfig::getInstance()->get("logger.level", self::LEVEL_FATAL);
+        return \SugarConfig::getInstance()->get('logger.level', self::LEVEL_FATAL);
     }
 
     /**
@@ -109,7 +108,7 @@ abstract class Logger extends \SugarLogger
      */
     protected function getLogDir()
     {
-        return dirname(SUGAR_PATH) . '/logs/';
+        return dirname(SUGAR_PATH).'/logs/';
     }
 
     /**
@@ -172,5 +171,4 @@ abstract class Logger extends \SugarLogger
     {
         $this->log(self::LEVEL_FATAL, $message);
     }
-
 }

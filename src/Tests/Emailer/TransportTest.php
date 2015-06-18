@@ -11,7 +11,6 @@ use DRI\SugarCRM\Tests\TestCase;
  */
 class TransportTest extends TestCase
 {
-
     /**
      * @var MockTransport
      */
@@ -37,10 +36,10 @@ class TransportTest extends TestCase
         $this->transport->queueResponse(new MockResponse(true));
 
         $email = new Email();
-        $email->addReplyTo("emil@kilhage.com", "Kilhage Emil");
-        $email->addTo("emil.kilhage@dri-nordic.com", "fdsfsd");
-        $email->setSubject("Test Subject");
-        $email->setBody("Test Body");
+        $email->addReplyTo('emil@kilhage.com', 'Kilhage Emil');
+        $email->addTo('emil.kilhage@dri-nordic.com', 'fdsfsd');
+        $email->setSubject('Test Subject');
+        $email->setBody('Test Body');
         $email->send();
 
         $sentEmails = $this->transport->getSentEmails();
@@ -48,10 +47,10 @@ class TransportTest extends TestCase
         $this->assertEquals(1, count($sentEmails));
 
         $email = new Email();
-        $email->addReplyTo("emil@kilhage.com", "Kilhage Emil");
-        $email->addTo("emil.kilhage@dri-nordic.com", "fdsfsd");
-        $email->setSubject("Test Subject");
-        $email->setBody("Test Body");
+        $email->addReplyTo('emil@kilhage.com', 'Kilhage Emil');
+        $email->addTo('emil.kilhage@dri-nordic.com', 'fdsfsd');
+        $email->setSubject('Test Subject');
+        $email->setBody('Test Body');
         $email->send();
 
         $sentEmails = $this->transport->getSentEmails();
@@ -59,10 +58,10 @@ class TransportTest extends TestCase
         $this->assertEquals(2, count($sentEmails));
 
         $email = new Email();
-        $email->addReplyTo("emil@kilhage.com", "Kilhage Emil");
-        $email->addTo("emil.kilhage@dri-nordic.com", "fdsfsd");
-        $email->setSubject("Test Subject");
-        $email->setBody("Test Body");
+        $email->addReplyTo('emil@kilhage.com', 'Kilhage Emil');
+        $email->addTo('emil.kilhage@dri-nordic.com', 'fdsfsd');
+        $email->setSubject('Test Subject');
+        $email->setBody('Test Body');
         $email->send();
 
         $sentEmails = $this->transport->getSentEmails();
@@ -72,17 +71,16 @@ class TransportTest extends TestCase
 
     public function testError()
     {
-        $this->transport->queueResponse(new MockResponse(false, "Error"));
+        $this->transport->queueResponse(new MockResponse(false, 'Error'));
 
         $this->setExpectedException('DRI\SugarCRM\Emailer\Exception');
 
         $email = new Email();
-        $email->addReplyTo("emil@kilhage.se");
-        $email->addTo("emilkilhage@gmail.com", 'fdssffsd');
-        $email->addCC("emil.kilhage@dri-nordic.com", 'hgrewwe sd');
-        $email->setSubject("Test Subject");
-        $email->setBody("Test Body");
+        $email->addReplyTo('emil@kilhage.se');
+        $email->addTo('emilkilhage@gmail.com', 'fdssffsd');
+        $email->addCC('emil.kilhage@dri-nordic.com', 'hgrewwe sd');
+        $email->setSubject('Test Subject');
+        $email->setBody('Test Body');
         $email->send();
     }
-
 }
