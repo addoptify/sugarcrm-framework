@@ -117,6 +117,15 @@ class MockDriver implements DriverInterface
     }
 
     /**
+     * @param string $path
+     * @param string $fileName
+     */
+    public function addAttachment($path, $fileName)
+    {
+
+    }
+
+    /**
      *
      */
     public function create()
