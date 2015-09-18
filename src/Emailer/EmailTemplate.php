@@ -3,6 +3,7 @@
 namespace DRI\SugarCRM\Emailer;
 
 require_once 'modules/PdfManager/PdfManagerHelper.php';
+require_once 'include/Sugarpdf/SugarpdfHelper.php';
 
 /**
  * @author Emil Kilhage
@@ -110,7 +111,53 @@ class EmailTemplate
      */
     public function parseBeanFields(\SugarBean $bean)
     {
-        return \PdfManagerHelper::parseBeanFields($bean, true);
+        $fields = \PdfManagerHelper::parseBeanFields($bean, true);
+
+        $fields = $this->formatDates($bean, $fields);
+
+        return $fields;
+    }
+
+    /**
+     * @param \SugarBean $bean
+     * @param array $fields
+     *
+     * @return array
+     */
+    private function formatDates(\SugarBean $bean, array $fields)
+    {
+        $timeDate = \TimeDate::getInstance();
+        foreach ($fields as $name => $value) {
+            $def = $bean->getFieldDefinition($name);
+
+            if (empty($def['type'])) {
+                continue;
+            }
+
+            switch ($def['type']) {
+                case 'date':
+                    if (!empty($value)) {
+                        $value = $timeDate->fromDbDate($value);
+                        if ($value instanceof \DateTime) {
+                            $fields[$name] = $timeDate->asUserDate($value);
+                        }
+                    }
+                    break;
+                case 'datetime':
+                case 'datetimecombo':
+                    if (!empty($value)) {
+                        $value = $timeDate->fromDb($value);
+                        if ($value instanceof \DateTime) {
+                            $fields[$name] = $timeDate->asUser($value);
+                        }
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        return $fields;
     }
 
     /**
