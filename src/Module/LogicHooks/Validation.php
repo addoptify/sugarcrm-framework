@@ -20,6 +20,10 @@ class Validation
         $indices = Utils::getUniqueIndices($bean);
 
         foreach ($indices as $index) {
+            if ($this->containsNullValues($bean, $index['fields'])) {
+                continue;
+            }
+
             $query = new \SugarQuery();
             $query->select('id');
             $query->from($bean);
@@ -58,6 +62,23 @@ class Validation
                 );
             }
         }
+    }
+
+    /**
+     * @param \SugarBean $bean
+     * @param array $fieldNames
+     *
+     * @return bool
+     */
+    private function containsNullValues(\SugarBean $bean, array $fieldNames)
+    {
+        foreach ($fieldNames as $fieldName) {
+            if (!isset($bean->$fieldName)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /**
