@@ -79,7 +79,13 @@ abstract class Logger extends \SugarLogger
      */
     public function getLevel()
     {
-        return \SugarConfig::getInstance()->get('logger.level', self::LEVEL_FATAL);
+        return \SugarConfig::getInstance()->get(
+            'DRI.logger.level',
+            \SugarConfig::getInstance()->get(
+                'logger.level',
+                self::LEVEL_FATAL
+            )
+        );
     }
 
     /**
@@ -108,7 +114,7 @@ abstract class Logger extends \SugarLogger
      */
     protected function getLogDir()
     {
-        return dirname(SUGAR_PATH).'/logs/';
+        return \SugarConfig::getInstance()->get('DRI.logger.log_dir', dirname(SUGAR_PATH).'/logs/');
     }
 
     /**
