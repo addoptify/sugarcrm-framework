@@ -100,8 +100,12 @@ abstract class Logger extends \SugarLogger
     {
         $this->log_dir = $this->getLogDir();
 
+        if (substr($this->log_dir, -1) !== '/') {
+            $this->log_dir .= '/';
+        }
+
         if (!is_dir($this->log_dir)) {
-            sugar_mkdir($this->log_dir, true);
+            sugar_mkdir($this->log_dir, null, true);
         }
 
         $this->logfile = $this->getFilename();
