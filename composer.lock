@@ -1,18 +1,24 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "5c3e2c625e4f360dec6dec834872c2ef",
+    "content-hash": "7eb8d8860b2d526ae142a93c912d08b5",
     "packages": [
         {
-            "name": "dri-nordic/sugarcrm-database",
-            "version": "0.1.0",
+            "name": "addoptify/sugarcrm-database",
+            "version": "0.2.1",
             "source": {
                 "type": "git",
-                "url": "git@gitlab.scm.dri.pt:dri-nordic/sugarcrm-database.git",
-                "reference": "a6211a3c88c632b8ebaa97630b0233aa2a3e9839"
+                "url": "https://github.com/addoptify/sugarcrm-database.git",
+                "reference": "5f185bd71a6e6c93cc4c801be9123ce910a103fc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/addoptify/sugarcrm-database/zipball/5f185bd71a6e6c93cc4c801be9123ce910a103fc",
+                "reference": "5f185bd71a6e6c93cc4c801be9123ce910a103fc",
+                "shasum": ""
             },
             "type": "library",
             "autoload": {
@@ -20,13 +26,14 @@
                     "DRI\\SugarCRM\\Component\\Database\\": "src/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "authors": [
                 {
                     "name": "Emil Kilhage",
                     "email": "emil.kilhage@dri-nordic.com"
                 }
             ],
-            "time": "2014-10-27 11:55:31"
+            "time": "2015-04-29T09:44:35+00:00"
         }
     ],
     "packages-dev": [],
@@ -34,6 +41,7 @@
     "minimum-stability": "stable",
     "stability-flags": [],
     "prefer-stable": false,
+    "prefer-lowest": false,
     "platform": [],
     "platform-dev": []
 }
