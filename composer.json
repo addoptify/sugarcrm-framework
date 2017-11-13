@@ -1,21 +1,15 @@
 {
-    "name": "dri-nordic/sugarcrm-framework",
+    "name": "addoptify/sugarcrm-framework",
     "authors": [
         {
             "name": "Emil Kilhage",
-            "email": "emil.kilhage@dri-nordic.com"
+            "email": "emilkilhage@gmail.com"
         }
     ],
     "autoload": {
         "psr-4": { "DRI\\SugarCRM\\": "src/" }
     },
     "require": {
-        "dri-nordic/sugarcrm-database": ">=0.1"
-    },
-    "repositories": [
-        {
-            "type": "composer",
-            "url":  "https://packages.dricrm.com/"
-        }
-    ]
+        "addoptify/sugarcrm-database": ">=0.1"
+    }
 }
