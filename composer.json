@@ -10,6 +10,12 @@
         "psr-4": { "DRI\\SugarCRM\\": "src/" }
     },
     "require": {
-        "addoptify/sugarcrm-database": ">=0.1"
-    }
+        "addoptify/sugarcrm-database": ">=0.2"
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url":  "git@github.com:addoptify/sugarcrm-framework.git"
+        }
+    ]
 }
