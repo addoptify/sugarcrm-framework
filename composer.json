@@ -11,11 +11,5 @@
     },
     "require": {
         "addoptify/sugarcrm-database": ">=0.2"
-    },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url":  "git@github.com:addoptify/sugarcrm-framework.git"
-        }
-    ]
+    }
 }
